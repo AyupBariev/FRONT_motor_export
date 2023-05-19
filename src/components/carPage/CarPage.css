@@ -1,0 +1,8 @@
+.car-page-container {
+    width: 90%;
+    margin: 0 auto; /* Центрирование по горизонтали */
+}
+
+.content-container{
+    max-width: 920px;
+}
