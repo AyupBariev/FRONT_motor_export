@@ -28,6 +28,9 @@ code {
 .w30percent{
   width: 30%;
 }
+.w20percent{
+  width: 20%;
+}
 .no-link-style {
   text-decoration: none;
   color: inherit;

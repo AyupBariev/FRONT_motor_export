@@ -13,7 +13,6 @@ import {engineCapacity} from "../../../data/engineCapacity";
 import {years} from "../../../data/years";
 
 const CarFilter = ({onChange}) => {
-    const [carModels, setCarModels] = useState([]);
     const [engineGroup, setEngineGroup] = useState(null);
     const [gearType, setGearType] = useState(null);
     const [transmission, setTransmission] = useState(null);
@@ -29,16 +28,6 @@ const CarFilter = ({onChange}) => {
         const countryName = Object.values(country)[0];
         return {value: isoCode, label: countryName};
     });
-    useEffect(() => {
-        // Загрузка списка моделей автомобилей
-        axios.get(process.env.REACT_APP_BACKEND_MOTOR_EXPORT + '/api/v1/car/list')
-            .then(response => {
-                setCarModels(response.data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }, []);
 
     const handleFilterChange = (event) => {
         // Обработчик изменений фильтра
@@ -50,7 +39,7 @@ const CarFilter = ({onChange}) => {
         <div className="ListingCarsFilters">
             <div className="MultiFilter__row">
                 <div className="ListingCarsFilters__column">
-                    <CarSelector onChange={handleFilterChange} activeLabel={false}/>
+                    <CarSelector onChange={handleFilterChange}/>
                 </div>
                 <div className="ListingCarsFilters__column">
                     <CustomSelectContainer
@@ -58,7 +47,10 @@ const CarFilter = ({onChange}) => {
                         name="country"
                         selectedOption={selectedCountry}
                         options={countryOptions}
-                        onChange={(selectedOption) => setSelectedCountry(selectedOption)}
+                        onChange={(selectedOption) => {
+                            setSelectedCountry(selectedOption);
+                            handleFilterChange({ target: { name: 'country', value: selectedOption ? selectedOption.value : null} });
+                        }}
                     />
                 </div>
             </div>
@@ -69,7 +61,10 @@ const CarFilter = ({onChange}) => {
                         name="engineGroup"
                         selectedOption={engineGroup}
                         options={engineGroupOptions}
-                        onChange={(selectedOption) => setEngineGroup(selectedOption)}
+                        onChange={(selectedOption) => {
+                            setEngineGroup(selectedOption);
+                            handleFilterChange({ target: { name: 'engineGroup', value: selectedOption ? selectedOption.value : null } });
+                        }}
                         padding="2px"
                     />
                     <CustomSelectContainer
@@ -77,7 +72,10 @@ const CarFilter = ({onChange}) => {
                         name="bodyTypeGroup"
                         selectedOption={bodyTypeGroup}
                         options={bodyTypeGroupOptions}
-                        onChange={(selectedOption) => setBodyTypeGroup(selectedOption)}
+                        onChange={(selectedOption) => {
+                            setBodyTypeGroup(selectedOption);
+                            handleFilterChange({ target: { name: 'bodyTypeGroup', value: selectedOption ? selectedOption.value : null } });
+                        }}
                         padding="2px"
                     />
                 </div>
@@ -87,7 +85,10 @@ const CarFilter = ({onChange}) => {
                         name="gearType"
                         selectedOption={gearType}
                         options={gearTypeOptions}
-                        onChange={(selectedOption) => setGearType(selectedOption)}
+                        onChange={(selectedOption) => {
+                            setGearType(selectedOption);
+                            handleFilterChange({ target: { name: 'gearType', value: selectedOption ? selectedOption.value : null } });
+                        }}
                         padding="2px"
                     />
                     <CustomSelectContainer
@@ -95,7 +96,10 @@ const CarFilter = ({onChange}) => {
                         name="transmission"
                         selectedOption={transmission}
                         options={transmissionOptions}
-                        onChange={(selectedOption) => setTransmission(selectedOption)}
+                        onChange={(selectedOption) => {
+                            setTransmission(selectedOption);
+                            handleFilterChange({ target: { name: 'transmission', value: selectedOption ? selectedOption.value : null } });
+                        }}
                         padding="2px"
                     />
 
@@ -128,6 +132,7 @@ const CarFilter = ({onChange}) => {
                         onChange={(selectedOption) => {
                             if (!yearTo || !selectedOption || selectedOption.value <= yearTo.value) {
                                 setYearFrom(selectedOption);
+                                handleFilterChange({ target: { name: 'yearFrom', value: selectedOption ? selectedOption.value : null } });
                             }
                         }}
                     />
@@ -139,6 +144,7 @@ const CarFilter = ({onChange}) => {
                         onChange={(selectedOption) => {
                             if (!yearFrom || !selectedOption || selectedOption.value >= yearFrom.value) {
                                 setYearTo(selectedOption);
+                                handleFilterChange({ target: { name: 'yearTo', value: selectedOption ? selectedOption.value : null } });
                             }
                         }}
                     />
@@ -168,6 +174,7 @@ const CarFilter = ({onChange}) => {
                         onChange={(selectedOption) => {
                             if (!displacementTo || !selectedOption || selectedOption.value <= displacementTo.value) {
                                 setDisplacementFrom(selectedOption);
+                                handleFilterChange({ target: { name: 'displacementFrom', value: selectedOption ? selectedOption.value : null } });
                             }
                         }}
                     />
@@ -179,6 +186,7 @@ const CarFilter = ({onChange}) => {
                         onChange={(selectedOption) => {
                             if (!displacementFrom || !selectedOption || selectedOption.value >= displacementFrom.value) {
                                 setDisplacementTo(selectedOption);
+                                handleFilterChange({ target: { name: 'displacementTo', value: selectedOption ? selectedOption.value : null } });
                             }
                         }}
                     />

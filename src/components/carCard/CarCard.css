@@ -1,0 +1,55 @@
+@media screen and (max-width: 1219px) {
+    .car-card {
+        width: 920px;
+    }
+}
+
+.car-card {
+    width: 90%;
+    margin: 0 auto; /* Центрирование по горизонтали */
+}
+.CardHead__topRow,.CardOfferBody__columnsWrapper, .CardInfoRow {
+    display: flex;
+}
+.CardHead__topRowLeftColumn {
+     flex: 1 1 auto;
+ }
+.CardHead__price {
+    flex-shrink: 0;
+    min-width: 236px;
+    position: relative;
+}
+.CardOfferBody__leftColumn {
+    margin: 0 24px 0 0;
+    padding-bottom: 64px;
+    width: 280px;
+}
+.CardOfferBody__rightColumn {
+    align-self: flex-start;
+    position: sticky;
+    top: 20px;
+    transition: top .3s;
+    width: 584px;
+}
+.CardInfoRow__cell:first-child {
+    flex-shrink: 0;
+    width: 172px;
+}
+.CardInfoRow__cell:last-child {
+    color: #000;
+    flex-grow: 1;
+    padding-left: 8px;
+}
+.CardInfoRow__cell {
+    color: #00000080;
+    display: block;
+    line-height: 20px;
+    padding: 3px 0;
+    text-overflow: ellipsis;
+}
+.CardInfo__list-MZpc1 {
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}

@@ -11,7 +11,7 @@ import {transmissionOptions} from "../../../data/transmissionOptions";
 
 const CarList = ({filter}) => {
     const [cars, setCars] = useState([]);
-    const [page, setPage] = useState(1);
+    const [page, setPage] = useState(0);
     const [size, setSize] = useState(30);
     const [totalPages, setTotalPages] = useState(1);
     const carModels = [{
@@ -24,8 +24,25 @@ const CarList = ({filter}) => {
     useEffect(() => {
         // Загрузка списка автомобилей с учетом фильтра и пагинации
         const url = `${process.env.REACT_APP_BACKEND_MOTOR_EXPORT}/api/v1/car/list?page=${page}&size=${size}`;
+        const filteredParams = {};
+
+        if (filter.make) {
+            filteredParams.make = filter.make;
+        }
+
+        if (filter.model) {
+            filteredParams.model = filter.model;
+        }
+
+        // Удаление пустых значений из filter
+        Object.keys(filter).forEach((key) => {
+            if (filter[key]) {
+                filteredParams[key] = filter[key];
+            }
+        });
+
         axios
-            .get(url, { params: filter }) // Передача фильтра как параметров запроса
+            .get(url, { params: filteredParams }) // Передача фильтра как параметров запроса
             .then((response) => {
                 setCars(response.data.carModels);
                 setTotalPages(response.data.totalPages);
@@ -34,6 +51,7 @@ const CarList = ({filter}) => {
                 console.log(error);
             });
     }, [page, size, filter]);
+
 
     const handlePageChange = (event) => {
         // Обработчик изменения страницы

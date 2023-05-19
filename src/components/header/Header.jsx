@@ -10,13 +10,13 @@ const Header = () => {
                 <a href="/">
                     <img src={logo} alt="Auto.ru" className="header__logo" />
                 </a>
-                <div className="header__search">
-                    <SearchBar/>
-                </div>
-                <div className="header__links">
-                    <a href="/" className="header__link">Help</a>
-                    <a href="/" className="header__link">Sign in</a>
-                </div>
+                {/*<div className="header__search">*/}
+                {/*    <SearchBar/>*/}
+                {/*</div>*/}
+                {/*<div className="header__links">*/}
+                {/*    <a href="/" className="header__link">Help</a>*/}
+                {/*    <a href="/" className="header__link">Sign in</a>*/}
+                {/*</div>*/}
             </div>
         </header>
     );
