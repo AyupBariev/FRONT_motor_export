@@ -31,7 +31,7 @@ const CarFilter = ({onChange}) => {
     });
     useEffect(() => {
         // Загрузка списка моделей автомобилей
-        axios.get('http://localhost:8080/api/v1/car/list')
+        axios.get(process.env.REACT_APP_BACKEND_MOTOR_EXPORT + '/api/v1/car/list')
             .then(response => {
                 setCarModels(response.data);
             })
@@ -45,7 +45,7 @@ const CarFilter = ({onChange}) => {
         const {name, value} = event.target;
         onChange(name, value);
     };
-    const {make, model, priceFrom, priceTo, mileageFrom, mileageTo, secretKey} = onChange;
+    const {priceFrom, priceTo, mileageFrom, mileageTo} = onChange;
     return (
         <div className="ListingCarsFilters">
             <div className="MultiFilter__row">

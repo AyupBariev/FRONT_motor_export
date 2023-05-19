@@ -12,6 +12,8 @@ import {engineGroupOptions} from "../../data/engineGroupOptions";
 import {gearTypeOptions} from "../../data/gearTypeOptions";
 import {transmissionOptions} from "../../data/transmissionOptions";
 import {bodyTypeGroupOptions} from "../../data/bodyTypeGroupOptions";
+import {years} from "../../data/years";
+import {engineCapacity} from "../../data/engineCapacity";
 
 const CarForm = () => {
     const [request, setRequest] = useState([]);
@@ -21,7 +23,8 @@ const CarForm = () => {
     const [transmission, setTransmission] = useState(null);
     const [bodyTypeGroup, setBodyTypeGroup] = useState(null);
     const [selectedCountry, setSelectedCountry] = useState(null);
-
+    const [year, setYear] = useState(null);
+    const [displacement, setDisplacement] = useState(null);
     const countryOptions = countriesByIsoCode.map((country) => {
         const isoCode = Object.keys(country)[0];
         const countryName = Object.values(country)[0];
@@ -29,15 +32,17 @@ const CarForm = () => {
     });
     const handleChange = (event) => {
         const input = event.target;
-        if (event.target.name === "make") {
-            setRequest({...request, make: event.target.value, model: ""});
-        } else if (event.target.name === "model") {
-            setRequest({...request, model: event.target.value});
-        } else {
-            setRequest({...request, [event.target.name]: event.target.value});
-        }
-        if (input && input.classList && input.classList.contains("invalid")) {
-            input.classList.remove("invalid");
+        if(event.target.name !== "files") {
+            if (event.target.name === "make") {
+                setRequest({...request, make: event.target.value, model: ""});
+            } else if (event.target.name === "model") {
+                setRequest({...request, model: event.target.value});
+            } else {
+                setRequest({...request, [event.target.name]: event.target.value});
+            }
+            if (input && input.classList && input.classList.contains("invalid")) {
+                input.classList.remove("invalid");
+            }
         }
     };
 
@@ -67,9 +72,6 @@ const CarForm = () => {
                 isFormValid = false;
             }
         });
-        photos.forEach((file) => {
-            formData.append("files", file);
-        });
         if (isFormValid) {
             try {
                 await axios.post("http://localhost:8080/api/v1/car/create", formData, {
@@ -86,7 +88,7 @@ const CarForm = () => {
         }
     };
 
-    const {make, model, year, price, mileage, displacement, secretKey} = request;
+    const {make, model, price, mileage, secretKey} = request;
 
     return (
         <form className="car-form" onSubmit={handleSubmit}>
@@ -127,12 +129,12 @@ const CarForm = () => {
                 onChange={(selectedOption) => setBodyTypeGroup(selectedOption)}
                 activeLabel={true}
             />
-            <CustomInputContainer
+            <CustomSelectContainer
                 label="Year"
-                value={year}
-                onChange={handleChange}
                 name="year"
-                type="number"
+                selectedOption={year}
+                options={years}
+                onChange={(selectedOption) => setYear(selectedOption)}
                 activeLabel={true}
             />
 
@@ -155,12 +157,12 @@ const CarForm = () => {
                 activeLabel={true}
             />
 
-            <CustomInputContainer
+            <CustomSelectContainer
                 label="Displacement"
-                value={displacement}
-                onChange={handleChange}
                 name="displacement"
-                type="number"
+                selectedOption={displacement}
+                options={engineCapacity}
+                onChange={(selectedOption) => setDisplacement(selectedOption)}
                 activeLabel={true}
             />
 

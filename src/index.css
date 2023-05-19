@@ -25,3 +25,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.w30percent{
+  width: 30%;
+}
+.no-link-style {
+  text-decoration: none;
+  color: inherit;
+}

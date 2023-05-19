@@ -3,3 +3,71 @@
     padding: 15px 16px;
     position: relative;
 }
+.ListingItem:not(.ListingItem_booked):before {
+    border-top: 1px solid #0000001a;
+    content: " ";
+    display: block;
+    height: 1px;
+    left: 16px;
+    position: absolute;
+    right: 16px;
+    top: 0;
+}
+.ListingItem__main {
+    display: flex;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "pnum";
+    font-family: "YS Text","Arial","Helvetica Neue","Helvetica",yandex-sans-rub-sign,sans-serif;;
+    font-variant-numeric: proportional-nums;
+}
+.ListingItemTechSummaryDesktop__column{
+    box-sizing: border-box;
+    padding-right: 12px;
+    width: 180px;
+}
+.ListingItemTechSummaryDesktop__column:nth-child(2) {
+    width: 110px;
+}
+.ListingItem:hover {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px 0 #0000001a;
+    z-index: 1;
+}
+.car-image-container {
+    flex-shrink: 0;
+    position: relative;
+    width: 205px;
+}
+.LazyImage__image {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity .15s;
+    width: 100%;
+    border-radius: 8px;
+}
+.car-details{
+    display: grid;
+    grid-template-columns: 320px 105px 75px 168px;
+    margin: 0 0 0 15px;
+    min-height: 154px;
+}
+.grid-item {
+    /*border: 1px solid black;*/
+    padding: 10px;
+}
+.ListingItemTechSummaryDesktop__cell {
+    color: #00000080;
+    font-size: 15px;
+    line-height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.fontWeightLight{
+    font-weight: 500;
+}
+.linkMessage{
+    height: 60px;
+}

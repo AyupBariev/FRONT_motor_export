@@ -53,8 +53,8 @@
     margin-top: 16px; /* добавлен вертикальный отступ сверху, чтобы предотвратить смещение */
 }
 
-.car-form input[type='text'],
-.car-form input[type='number'] {
+.car-form .custom-input-container input[type='text'],
+.car-form .custom-input-container input[type='number'] {
     padding: 10px 20px 8px 10px;
     border: 1px solid #00000040;
     border-radius: 4px;

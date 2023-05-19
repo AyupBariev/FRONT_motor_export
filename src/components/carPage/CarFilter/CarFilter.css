@@ -108,5 +108,47 @@
 .ListingCarsFilters__row .ListingCarsFilters__column .custom-select-container{
     width: 100%;
 }
+@media (max-width: 767px) {
+    .ListingCarsFilters {
+        padding: 10px;
+    }
 
+    .MultiFilter__row,
+    .ListingCarsFilters__row,
+    .ListingCarsFilters__column {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .MultiFilter__row .custom-select-container,
+    .ListingCarsFilters__row .ListingCarsFilters__column {
+        width: 100%;
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+
+    .MultiFilter__row .custom-select-container label,
+    .MultiFilter__row .custom-input-container label {
+        position: relative;
+        top: 0;
+        left: 0;
+        font-size: 16px;
+        margin-bottom: 6px;
+    }
+
+    .ListingCarsFilters__column .custom-input-container > input[type='text'],
+    .ListingCarsFilters__column .custom-input-container > input[type='number'] {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .ListingCarsFilters__column,
+    .ListingCarsFilters__column .custom-select-container:first-child {
+        margin-left: 0;
+    }
+
+    .ListingCarsFilters__column:not(:first-child), .ListingCarsFilters__column .custom-select-container:not(:first-child), .ListingCarsFilters__column .custom-input-container:not(:first-child) {
+        margin-left:inherit;
+    }
+}
 
