@@ -57,40 +57,28 @@
     font-size: 16px;
 }
 .MultiFilter__row, .ListingCarsFilters__row {
-    /* Стили для контейнера-обертки */
-    /* Например: */
     margin-bottom: 16px;
 }
 
 .MultiFilter__row .cstm-select__control, .ListingCarsFilters__row .cstm-select__control{
-    /* Стили для контрола Select */
-    /* Например: */
     border: 1px solid #00000040;
     border-radius: 8px;
     min-height: 40px;
 }
 .MultiFilter__row .cstm-select__control:hover, .ListingCarsFilters__row .cstm-select__control:hover, .ListingCarsFilters__row .custom-input-container:hover {
-    /* Стили при наведении на контрол */
-    /* Например: */
     border-color: #157ee1;
 }
 
 .MultiFilter__row .cstm-select__control--menu-is-open, .ListingCarsFilters__row .cstm-select__control--menu-is-open {
-    /* Стили при открытом меню */
-    /* Например: */
     border-color: #0176ffb8;
 }
 
 .MultiFilter__row .cstm-select__option--is-selected, .ListingCarsFilters__row .cstm-select__option--is-selected {
-    /* Стили для выбранного варианта */
-    /* Например: */
     background-color: #157ee1;
     color: white;
 }
 
 .MultiFilter__row .cstm-select__option--is-focused, .ListingCarsFilters__row .cstm-select__option--is-focused{
-    /* Стили для варианта при фокусе */
-    /* Например: */
     background-color: #0176ffb8;
     color: white;
 }
@@ -105,10 +93,47 @@
     display: flex;
     min-width: 0;
 }
-.ListingCarsFilters__row .ListingCarsFilters__column .custom-select-container{
+.ListingCarsFilters__row .ListingCarsFilters__column .custom-select-container, .custom-input-container{
     width: 100%;
 }
-@media (max-width: 767px) {
+@media (min-width: 1001px) {
+    .filter-toggle-button {
+        display: none;
+    }
+}
+@media (max-width: 1000px) {
+    label{
+        display: none;
+    }
+    .ListingCarsFilters__row .ListingCarsFilters__column,
+    .MultiFilter__row, .ListingCarsFilters__row{
+        margin-bottom: 0;
+    }
+    .custom-select-container, .custom-input-container {
+        margin-bottom: 10px;
+    }
+    .ListingCarsFilters.show {
+        display: block;
+    }
+    .Tag {
+        margin: 10px 0;
+    }
+    .Tag__child_element:first-child {
+        padding: 0 8px;
+    }
+    .Tag__child {
+        align-items: center;
+        display: inline-flex;
+        height: 100%;
+        font-size: 13px;
+    }
+    .IconSvg_size_16 {
+        height: 16px;
+        width: 16px;
+    }
+    .ListingCarsFilters {
+        display: none;
+    }
     .ListingCarsFilters {
         padding: 10px;
     }
@@ -124,7 +149,6 @@
     .ListingCarsFilters__row .ListingCarsFilters__column {
         width: 100%;
         margin-left: 0;
-        margin-bottom: 10px;
     }
 
     .MultiFilter__row .custom-select-container label,

@@ -14,6 +14,7 @@ import {transmissionOptions} from "../../data/transmissionOptions";
 import {bodyTypeGroupOptions} from "../../data/bodyTypeGroupOptions";
 import {years} from "../../data/years";
 import {engineCapacity} from "../../data/engineCapacity";
+import { useNavigate } from 'react-router-dom';
 
 const CarForm = () => {
     const [request, setRequest] = useState([]);
@@ -30,6 +31,7 @@ const CarForm = () => {
         const countryName = Object.values(country)[0];
         return {value: isoCode, label: countryName};
     });
+    const navigate = useNavigate();
     const handleChange = (event) => {
         const input = event.target;
         if(event.target.name !== "files") {
@@ -74,13 +76,13 @@ const CarForm = () => {
         });
         if (isFormValid) {
             try {
-                await axios.post("http://localhost:8080/api/v1/car/create", formData, {
+                const response = await axios.post(`${process.env.REACT_APP_BACKEND_MOTOR_EXPORT}/api/v1/car/create`, formData, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                         "Accept": "application/json"
                     },
                 });
-                alert("Car created successfully!");
+                navigate(`/car/${response.data}`);
             } catch (error) {
                 console.error(error);
                 alert("Error creating car");

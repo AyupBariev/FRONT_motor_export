@@ -1,37 +1,86 @@
 body {
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-  font-feature-settings: "pnum";
-  font-family: "YS Text","Arial","Helvetica Neue","Helvetica",yandex-sans-rub-sign,sans-serif;;
-  font-variant-numeric: proportional-nums;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "pnum";
+    font-family: "YS Text", "Arial", "Helvetica Neue", "Helvetica", yandex-sans-rub-sign, sans-serif;;
+    font-variant-numeric: proportional-nums;
 }
 
 :focus {
-  outline: none;
+    outline: none;
 }
 
 input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  display: none;
+    -webkit-appearance: none;
+    display: none;
 }
 
-select{
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.w30percent{
-  width: 30%;
+
+.w30percent {
+    width: 30%;
 }
-.w20percent{
-  width: 20%;
+
+.w20percent {
+    width: 20%;
 }
+
 .no-link-style {
-  text-decoration: none;
-  color: inherit;
+    text-decoration: none;
+    color: inherit;
+}
+
+.mr10 {
+    margin-right: 10px;
+}
+button{
+    background-color: #0c78ed1f;
+    border-color: #157ee180;
+    color: #000;
+    -webkit-tap-highlight-color: transparent;
+    align-items: center;
+    cursor: pointer;
+    display: inline-flex;
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+    text-decoration: none;
+    height: 32px;
+    line-height: 30px;
+    font-size: 13px;
+    padding: 0 10px;
+    -webkit-font-smoothing: antialiased;
+    border-radius: 1000px;
+    font-family: inherit;
+    max-width: 100%;
+    outline: 0;
+    position: relative;
+    text-align: center;
+    -webkit-user-select: none;
+    user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+button:hover {
+    background-color: #0c78ed;
+    border-color: #0000;
+    color: #fff;
+}
+
+button:disabled {
+    background-color: #fff;
+    border-color: #0000001f;
+    color: #0003;
+    cursor: default;
+}
+.nowrap {
+    white-space: nowrap;
 }

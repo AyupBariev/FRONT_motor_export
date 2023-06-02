@@ -8,6 +8,7 @@ import {bodyTypeGroupOptions} from "../../../data/bodyTypeGroupOptions";
 import {engineGroupOptions} from "../../../data/engineGroupOptions";
 import {gearTypeOptions} from "../../../data/gearTypeOptions";
 import {transmissionOptions} from "../../../data/transmissionOptions";
+import SpaceDigitComponent from "../../common/SpaceDigitComponent";
 
 const CarList = ({filter}) => {
     const [cars, setCars] = useState([]);
@@ -42,7 +43,7 @@ const CarList = ({filter}) => {
         });
 
         axios
-            .get(url, { params: filteredParams }) // Передача фильтра как параметров запроса
+            .get(url, {params: filteredParams}) // Передача фильтра как параметров запроса
             .then((response) => {
                 setCars(response.data.carModels);
                 setTotalPages(response.data.totalPages);
@@ -61,14 +62,14 @@ const CarList = ({filter}) => {
 
     const handlePreviousPage = () => {
         // Обработчик для переключения на предыдущую страницу
-        if (page > 1) {
+        if (page > 0) {
             setPage(page - 1);
         }
     };
 
     const handleNextPage = () => {
         // Обработчик для переключения на следующую страницу
-        if (page < totalPages) {
+        if (page < totalPages - 1) {
             setPage(page + 1);
         }
     };
@@ -84,7 +85,7 @@ const CarList = ({filter}) => {
         <div>
             {/* Отображение списка автомобилей */}
             {cars.map((car) => (
-                <a href={process.env.REACT_APP_APP_URL + "/car/" +car.id} className="no-link-style">
+                <a key={car.id} href={process.env.REACT_APP_APP_URL + "/car/" + car.id} className="no-link-style">
                     <div className="ListingItem">
                         <div className="ListingItem__main">
                             <div className="car-image-container">
@@ -92,7 +93,7 @@ const CarList = ({filter}) => {
                             </div>
                             <div className="car-details">
                                 <div className="grid-item">
-                                    <h3>{car.make} {car.model}</h3>
+                                    <span className="titleDetails">{car.make} {car.model}</span>
                                     {/* Вывод остальной информации из endpoint */}
                                     <div className="ListingItem__main">
                                         <div
@@ -109,14 +110,16 @@ const CarList = ({filter}) => {
                                     </div>
                                 </div>
                                 <div className="grid-item">
-                                    <h3>{car.price}&nbsp;$</h3>
+                                    <span className="titleDetails"><SpaceDigitComponent digits={car.price}/>&nbsp;{"$"}</span>
                                 </div>
                                 <div className="grid-item">
-                                    <h3 className="fontWeightLight">{car.year}&nbsp;y.</h3>
+                                    <span className="titleDetails fontWeightLight">{car.year}&nbsp;y.</span>
                                 </div>
                                 <div className="grid-item">
-                                    <h3 className="fontWeightLight">{car.mileage} ml.</h3>
-                                    <a  className="linkMessage" href={"https://api.whatsapp.com/send/?phone=971559299569&text=" + encodeURIComponent('Hello! I want to buy the car ' + process.env.REACT_APP_BACKEND_MOTOR_EXPORT + '/api/v1/car/' + car.id) + "&type=phone_number&app_absent=0"}><img
+                                    <span className="titleDetails fontWeightLight"><SpaceDigitComponent
+                                        digits={car.mileage}/>&nbsp;{"ml."}</span>
+                                    <a className="linkMessage"
+                                       href={"https://api.whatsapp.com/send/?phone=971559299569&text=" + encodeURIComponent('Hello! I want to buy the car ' + process.env.REACT_APP_BACKEND_MOTOR_EXPORT + '/api/v1/car/' + car.id) + "&type=phone_number&app_absent=0"}><img
                                         className="w30percent"
                                         src={process.env.REACT_APP_APP_URL + "/images/whatsApp.png"}
                                         alt="Write the message"/></a>
@@ -126,35 +129,16 @@ const CarList = ({filter}) => {
                     </div>
                 </a>
             ))}
-
-            <div>
-                <label>Page:</label>
-                <select value={page} onChange={handlePageChange}>
-                    {/* Опции для выбора страницы */}
-                    {Array.from({length: totalPages}, (_, index) => (
-                        <option key={index + 1} value={index + 1}>
-                            {index + 1}
-                        </option>
-                    ))}
-                </select>
-                <button onClick={handlePreviousPage} disabled={page === 1}>
-                    Previous
+            <div className="pgn__Content">
+                <button onClick={handlePreviousPage} disabled={page === 0} className="pgn__Button mr10">
+                    ←&nbsp;Previous
                 </button>
-                <button onClick={handleNextPage} disabled={page === totalPages}>
-                    Next
+                <button onClick={handleNextPage} disabled={page === totalPages - 1} className="pgn__Button">
+                    Next&nbsp;→
                 </button>
-            </div>
-
-            <div>
-                <label>Size:</label>
-                <select value={size} onChange={handleSizeChange}>
-                    <option value="2">2</option>
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                </select>
             </div>
         </div>
-    );
+);
 };
 
 export default CarList;
