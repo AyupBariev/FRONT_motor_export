@@ -21,6 +21,7 @@
     top: 20px;
     transition: top .3s;
     width: 584px;
+    height: 500px;
 }
 .CardInfoRow__cell:first-child {
     flex-shrink: 0;
@@ -43,9 +44,6 @@
     list-style: none;
     margin: 0;
     padding: 0;
-}
-.LazyImage__image {
-    height: 500px;
 }
 @media screen and (max-width: 1000px) {
     .car-card {

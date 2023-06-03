@@ -29,6 +29,7 @@
     flex-shrink: 0;
     position: relative;
     width: 205px;
+    height: 175px;
 }
 .LazyImage__image {
     display: block;
@@ -54,9 +55,9 @@
     /*border: 1px solid black;*/
     padding: 0 10px;
 }
-.LazyImage__image {
-    height: auto!important;
-}
+/*.LazyImage__image {*/
+/*    background-size: cover;*/
+/*}*/
 .ListingItemTechSummaryDesktop__cell {
     color: #000000d6;
     font-size: 15px;
