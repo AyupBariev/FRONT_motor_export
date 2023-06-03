@@ -4,6 +4,8 @@
 }
 .CardHead__topRow,.CardOfferBody__columnsWrapper, .CardInfoRow, .CardHead__topRowLeftColumn {
     display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 .CardHead__price {
     flex-shrink: 0;

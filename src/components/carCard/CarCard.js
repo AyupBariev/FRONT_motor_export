@@ -67,10 +67,9 @@ const CarCard = () => {
                     {windowWidth <= 1000 ? <a
                         className="linkMessage mobileDisplay"
                         href={"https://api.whatsapp.com/send/?phone=971559299569&text=" + encodeURIComponent('Hello! I want to buy the car ' + process.env.REACT_APP_URL + '/car/' + guid) + "&type=phone_number&app_absent=0"}
-                        style={{textAlign:"right", paddingRight: "21px"}}
                     >
                         <img
-                            className="w20percent"
+                            style={{width: '35px', height: '35px'}}
                             src={whatsApp}
                             alt="Write the message"
                         />
