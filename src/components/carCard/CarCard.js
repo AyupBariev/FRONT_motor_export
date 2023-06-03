@@ -41,7 +41,7 @@ const CarCard = () => {
         // Функция для загрузки информации о машине с использованием guid
         const fetchCarData = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/api/v1/car/?id=${guid}`);
+                const response = await axios.get(`${process.env.REACT_APP_BACKEND_MOTOR_EXPORT}/api/v1/car/?id=${guid}`);
                 setCarData(response.data);
             } catch (error) {
                 console.log(error);
