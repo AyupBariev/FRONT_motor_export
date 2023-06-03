@@ -1,8 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import arrowLeft from '../../../default-images/arrowLeft.png';
 import arrowRight from '../../../default-images/arrowRight.png';
 
-const CarouselComponent = ({ carModels }) => {
+const CarouselComponent = ({carModels}) => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const carouselRef = useRef(null);
     const startXRef = useRef(0);
@@ -100,8 +100,7 @@ const CarouselComponent = ({ carModels }) => {
         display: 'block',
         maxWidth: '100%',
         transition: 'transform 0.3s ease',
-        transform: `translateX(-${currentSlide * 100}%)`, // Используйте текущий слайд для определения смещения
-
+        transform: `translateX(-${currentSlide * 100}%)`,
     };
 
     const handleMouseEnter = (event) => {
@@ -114,9 +113,13 @@ const CarouselComponent = ({ carModels }) => {
         event.target.style.backgroundColor = 'transparent';
     };
 
+    const carouselContainerStyle = {
+        width: '100%',
+    };
+
     return (
         <div
-            style={{ position: 'relative', height: '100%', overflow: 'hidden' }}
+            style={{position: 'relative', height: '100%', overflow: 'hidden'}}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -129,7 +132,7 @@ const CarouselComponent = ({ carModels }) => {
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                 >
-                    <img src={arrowLeft} alt="" style={{ ...arrowStyle, marginRight: '10px' }} />
+                    <img src={arrowLeft} alt="" style={{...arrowStyle, marginRight: '10px'}}/>
                 </button>
                 <button
                     onClick={handleNext}
@@ -137,19 +140,21 @@ const CarouselComponent = ({ carModels }) => {
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                 >
-                    <img src={arrowRight} alt="" style={{ ...arrowStyle, marginLeft: '4px' }} />
+                    <img src={arrowRight} alt="" style={{...arrowStyle, marginLeft: '4px'}}/>
                 </button>
             </div>
-            <div style={{ display: 'flex', transition: 'transform 0.3s ease', height: '100%' }}>
-                {carModels.imagePaths.map((imagePath, index) => (
-                    <img
-                        key={index}
-                        className="LazyImage__image"
-                        src={process.env.REACT_APP_URL + '/' + imagePath}
-                        alt={`Image ${index}`}
-                        style={imageStyle}
-                    />
-                ))}
+            <div style={carouselContainerStyle}>
+                <div style={{display: 'flex', transition: 'transform 0.3s ease', height: '100%'}}>
+                    {carModels.imagePaths.map((imagePath, index) => (
+                        <img
+                            key={index}
+                            className="LazyImage__image"
+                            src={process.env.REACT_APP_URL + '/' + imagePath}
+                            alt={`Image ${index}`}
+                            style={imageStyle}
+                        />
+                    ))}
+                </div>
             </div>
         </div>
     );
