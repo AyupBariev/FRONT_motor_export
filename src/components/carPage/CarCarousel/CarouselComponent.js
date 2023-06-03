@@ -72,7 +72,7 @@ const CarouselComponent = ({ carModels }) => {
 
     const arrowContainerStyle = {
         position: 'absolute',
-        top: '45%',
+        top: '50%',
         transform: 'translateY(-50%)',
         display: 'flex',
         justifyContent: 'space-between',
@@ -101,6 +101,7 @@ const CarouselComponent = ({ carModels }) => {
         maxWidth: '100%',
         transition: 'transform 0.3s ease',
         transform: `translateX(-${currentSlide * 100}%)`, // Используйте текущий слайд для определения смещения
+
     };
 
     const handleMouseEnter = (event) => {
@@ -139,7 +140,7 @@ const CarouselComponent = ({ carModels }) => {
                     <img src={arrowRight} alt="" style={{ ...arrowStyle, marginLeft: '4px' }} />
                 </button>
             </div>
-            <div style={{ display: 'flex', transition: 'transform 0.3s ease' }}>
+            <div style={{ display: 'flex', transition: 'transform 0.3s ease', height: '100%' }}>
                 {carModels.imagePaths.map((imagePath, index) => (
                     <img
                         key={index}
