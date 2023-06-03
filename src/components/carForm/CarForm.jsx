@@ -48,6 +48,7 @@ const CarForm = () => {
         }
     };
 
+
     function handleFileChange(event) {
         const files = event.target.files;
         const newPhotos = Array.from(files);
@@ -64,9 +65,6 @@ const CarForm = () => {
         event.preventDefault();
         const form = event.target;
         const formData = new FormData(form);
-        photos.forEach((photo) => {
-            formData.append('files', photo);
-        });
         const formValues = Object.fromEntries(formData.entries());
         let isFormValid = true;
         Object.entries(formValues).forEach(([key, value]) => {
