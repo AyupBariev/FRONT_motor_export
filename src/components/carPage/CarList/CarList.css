@@ -33,7 +33,6 @@
 }
 .LazyImage__image {
     display: block;
-    height: min-content;
     object-fit: cover;
     transition: opacity .15s;
     width: 100%;
