@@ -21,7 +21,7 @@
     top: 20px;
     transition: top .3s;
     width: 584px;
-    height: 500px;
+    height: 100%;
 }
 .CardInfoRow__cell:first-child {
     flex-shrink: 0;
