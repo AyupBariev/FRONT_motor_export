@@ -65,7 +65,7 @@ const CarList = ({filter}) => {
         <div>
             {/* Отображение списка автомобилей */}
             {cars.map((car) => (
-                <a key={car.id} href={process.env.REACT_APP_APP_URL + "/car/" + car.id} className="no-link-style">
+                <a key={car.id} href={process.env.REACT_APP_URL + "/car/" + car.id} className="no-link-style">
                     <div className="ListingItem">
                         <div className="ListingItem__main">
                             <div className="car-image-container">
@@ -99,7 +99,7 @@ const CarList = ({filter}) => {
                                     <span className="titleDetails fontWeightLight"><SpaceDigitComponent
                                         digits={car.mileage}/>&nbsp;{"ml."}</span>
                                     <a className="linkMessage"
-                                       href={"https://api.whatsapp.com/send/?phone=971559299569&text=" + encodeURIComponent('Hello! I want to buy the car ' + process.env.REACT_APP_BACKEND_MOTOR_EXPORT + '/api/v1/car/' + car.id) + "&type=phone_number&app_absent=0"}><img
+                                       href={"https://api.whatsapp.com/send/?phone=971559299569&text=" + encodeURIComponent('Hello! I want to buy the car ' + process.env.REACT_APP_URL + '/car/' + car.id) + "&type=phone_number&app_absent=0"}><img
                                         className="w30percent"
                                         src={whatsApp}
                                         alt="Write the message"/></a>

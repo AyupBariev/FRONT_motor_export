@@ -119,7 +119,7 @@ const CarouselComponent = ({ carModels }) => {
             </div>
             <img
                 className="LazyImage__image"
-                src={process.env.REACT_APP_APP_URL + '/' + carModels.imagePaths[currentSlide]}
+                src={process.env.REACT_APP_URL + '/' + carModels.imagePaths[currentSlide]}
                 alt={`Image ${currentSlide}`}
                 style={imageStyle}
             />

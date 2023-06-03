@@ -66,7 +66,7 @@ const CarCard = () => {
                     <h3 className="nowrap">{carData.make} {carData.model}, {carData.year}</h3>
                     {windowWidth <= 1000 ? <a
                         className="linkMessage mobileDisplay"
-                        href={"https://api.whatsapp.com/send/?phone=971559299569&text=" + encodeURIComponent('Hello! I want to buy the car ' + process.env.REACT_APP_BACKEND_MOTOR_EXPORT + '/api/v1/car/' + guid) + "&type=phone_number&app_absent=0"}
+                        href={"https://api.whatsapp.com/send/?phone=971559299569&text=" + encodeURIComponent('Hello! I want to buy the car ' + process.env.REACT_APP_URL + '/car/' + guid) + "&type=phone_number&app_absent=0"}
                         style={{textAlign:"right", paddingRight: "21px"}}
                     >
                         <img
@@ -115,7 +115,7 @@ const CarCard = () => {
                         })}
                     </ul>
                     {windowWidth > 1000 ? <a className="linkMessage mobileDisplay"
-                       href={"https://api.whatsapp.com/send/?phone=971559299569&text=" + encodeURIComponent('Hello! I want to buy the car ' + process.env.REACT_APP_BACKEND_MOTOR_EXPORT + '/api/v1/car/' + guid) + "&type=phone_number&app_absent=0"}><img
+                       href={"https://api.whatsapp.com/send/?phone=971559299569&text=" + encodeURIComponent('Hello! I want to buy the car ' + process.env.REACT_APP_URL + '/car/' + guid) + "&type=phone_number&app_absent=0"}><img
                         className="w20percent"
                         src={whatsApp}
                         alt="Write the message"/></a> : ''}
