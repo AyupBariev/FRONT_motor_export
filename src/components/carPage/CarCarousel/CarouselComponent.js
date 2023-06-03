@@ -79,7 +79,6 @@ const CarouselComponent = ({ carModels }) => {
     const imageStyle = {
         display: 'block',
         maxWidth: '100%',
-        height: '500px',
     };
 
     const handleMouseEnter = (event) => {

@@ -89,7 +89,7 @@ const CarList = ({filter}) => {
                     <div className="ListingItem">
                         <div className="ListingItem__main">
                             <div className="car-image-container">
-                                <CarouselComponent carModels={carModels}/>
+                                <CarouselComponent className="imageHeight" carModels={carModels}/>
                             </div>
                             <div className="car-details">
                                 <div className="grid-item">

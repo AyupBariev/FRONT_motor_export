@@ -17,6 +17,7 @@ const CarCard = () => {
     const {guid} = useParams();
     const navigate = useNavigate();
     const [carData, setCarData] = useState(null);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const carModels = [{
         "imagePaths": [
             "/images/1.webp",
@@ -28,7 +29,20 @@ const CarCard = () => {
         const countryName = Object.values(country)[0];
         return {value: isoCode, label: countryName};
     });
+    useEffect(() => {
+        // Обработчик изменения размера окна
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
 
+        // Добавляем обработчик события при монтировании компонента
+        window.addEventListener('resize', handleResize);
+
+        // Удаляем обработчик события при размонтировании компонента
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
     useEffect(() => {
         // Функция для загрузки информации о машине с использованием guid
         const fetchCarData = async () => {
@@ -56,8 +70,8 @@ const CarCard = () => {
             <div className="CardHead__topRow">
                 <div className="CardHead__topRowLeftColumn">
                     <h3 className="nowrap">{carData.make} {carData.model}, {carData.year}</h3>
-                    <a
-                        className="linkMessage"
+                    {windowWidth <= 1000 ? <a
+                        className="linkMessage mobileDisplay"
                         href={"https://api.whatsapp.com/send/?phone=971559299569&text=" + encodeURIComponent('Hello! I want to buy the car ' + process.env.REACT_APP_BACKEND_MOTOR_EXPORT + '/api/v1/car/' + guid) + "&type=phone_number&app_absent=0"}
                         style={{textAlign:"right", paddingRight: "21px"}}
                     >
@@ -66,7 +80,7 @@ const CarCard = () => {
                             src={whatsApp}
                             alt="Write the message"
                         />
-                    </a>
+                    </a> : ''}
                 </div>
             </div>
             <div className="CardOfferBody__columnsWrapper">
@@ -106,11 +120,11 @@ const CarCard = () => {
                             return null;
                         })}
                     </ul>
-                    {/*<a className="linkMessage"*/}
-                    {/*   href={"https://api.whatsapp.com/send/?phone=971559299569&text=" + encodeURIComponent('Hello! I want to buy the car ' + process.env.REACT_APP_BACKEND_MOTOR_EXPORT + '/api/v1/car/' + guid) + "&type=phone_number&app_absent=0"}><img*/}
-                    {/*    className="w20percent"*/}
-                    {/*    src={process.env.REACT_APP_APP_URL + "/images/whatsApp.png"}*/}
-                    {/*    alt="Write the message"/></a>*/}
+                    {windowWidth > 1000 ? <a className="linkMessage mobileDisplay"
+                       href={"https://api.whatsapp.com/send/?phone=971559299569&text=" + encodeURIComponent('Hello! I want to buy the car ' + process.env.REACT_APP_BACKEND_MOTOR_EXPORT + '/api/v1/car/' + guid) + "&type=phone_number&app_absent=0"}><img
+                        className="w20percent"
+                        src={whatsApp}
+                        alt="Write the message"/></a> : ''}
                 </div>
                 <div className="CardOfferBody__rightColumn">
                     <CarouselComponent carModels={carModels}/>

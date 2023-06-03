@@ -54,6 +54,9 @@
     /*border: 1px solid black;*/
     padding: 0 10px;
 }
+.imageHeight {
+    height: auto!important;
+}
 .ListingItemTechSummaryDesktop__cell {
     color: #000000d6;
     font-size: 15px;

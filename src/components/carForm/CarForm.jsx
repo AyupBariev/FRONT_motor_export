@@ -193,7 +193,7 @@ const CarForm = () => {
                 <FontAwesomeIcon icon={faCamera} style={{color: "gray", fontSize: "43px"}}/>
                 <input type="file" onChange={handleFileChange} multiple/>
             </label>
-            <span style={{fontSize: '12px', color: 'gray', margin: '4px 0 0 0'}}>Upload max 5 photos</span>
+            <span style={{fontSize: '12px', color: 'gray', margin: '4px 0 0 0'}}>Upload photos</span>
             <PhotoList photos={photos} onPhotoDelete={handlePhotoDelete}/>
             <button type="submit">Submit</button>
         </form>
