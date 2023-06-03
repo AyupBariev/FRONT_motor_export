@@ -29,7 +29,7 @@
     flex-shrink: 0;
     position: relative;
     width: 205px;
-    height: 175px;
+    height: 250px;
 }
 .LazyImage__image {
     display: block;

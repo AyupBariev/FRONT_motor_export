@@ -115,6 +115,7 @@ const CarouselComponent = ({carModels}) => {
 
     const carouselContainerStyle = {
         width: '100%',
+        height: '100%'
     };
 
     return (
