@@ -15,12 +15,6 @@ const CarList = ({filter}) => {
     const [page, setPage] = useState(0);
     const [size, setSize] = useState(30);
     const [totalPages, setTotalPages] = useState(1);
-    const carModels = [{
-        "imagePaths": [
-            "/images/1.webp",
-            "/images/2.webp"
-        ]
-    }];
 
     useEffect(() => {
         // Загрузка списка автомобилей с учетом фильтра и пагинации
@@ -53,13 +47,6 @@ const CarList = ({filter}) => {
             });
     }, [page, size, filter]);
 
-
-    const handlePageChange = (event) => {
-        // Обработчик изменения страницы
-        const newPage = parseInt(event.target.value);
-        setPage(newPage);
-    };
-
     const handlePreviousPage = () => {
         // Обработчик для переключения на предыдущую страницу
         if (page > 0) {
@@ -74,13 +61,6 @@ const CarList = ({filter}) => {
         }
     };
 
-    const handleSizeChange = (event) => {
-        // Обработчик изменения размера страницы
-        const newSize = parseInt(event.target.value);
-        setSize(newSize);
-        setPage(1); // Сброс текущей страницы до 1 при изменении размера
-    };
-
     return (
         <div>
             {/* Отображение списка автомобилей */}
@@ -89,7 +69,7 @@ const CarList = ({filter}) => {
                     <div className="ListingItem">
                         <div className="ListingItem__main">
                             <div className="car-image-container">
-                                <CarouselComponent carModels={carModels}/>
+                                <CarouselComponent carModels={car}/>
                             </div>
                             <div className="car-details">
                                 <div className="grid-item">
