@@ -93,7 +93,7 @@ const CarouselComponent = ({ carModels }) => {
 
     return (
         <div
-            style={{position: 'relative'}}
+            style={{position: 'relative', height: '100%'}}
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
