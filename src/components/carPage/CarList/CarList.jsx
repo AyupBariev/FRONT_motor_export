@@ -13,7 +13,7 @@ import whatsApp from '../../../default-images/whatsApp.png';
 const CarList = ({filter}) => {
     const [cars, setCars] = useState([]);
     const [page, setPage] = useState(0);
-    const [size, setSize] = useState(30);
+    const [size, setSize] = useState(5);
     const [totalPages, setTotalPages] = useState(1);
 
     useEffect(() => {
