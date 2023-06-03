@@ -52,7 +52,7 @@ const CarForm = () => {
     function handleFileChange(event) {
         const files = event.target.files;
         const newPhotos = Array.from(files);
-        setPhotos(newPhotos);
+        setPhotos((prevPhotos) => [...prevPhotos, ...newPhotos]);
     }
 
     function handlePhotoDelete(index) {
@@ -65,6 +65,9 @@ const CarForm = () => {
         event.preventDefault();
         const form = event.target;
         const formData = new FormData(form);
+        photos.forEach((photo) => {
+            formData.append('files', photo);
+        });
         const formValues = Object.fromEntries(formData.entries());
         let isFormValid = true;
         Object.entries(formValues).forEach(([key, value]) => {
@@ -82,6 +85,7 @@ const CarForm = () => {
                         "Accept": "application/json"
                     },
                 });
+                setPhotos([]); // Очистить массив photos
                 navigate(`/car/${response.data}`);
             } catch (error) {
                 console.error(error);
@@ -187,7 +191,7 @@ const CarForm = () => {
             />
             <label className="file-upload file-preview file-preview-item">
                 <FontAwesomeIcon icon={faCamera} style={{color: "gray", fontSize: "43px"}}/>
-                <input type="file" name="files" onChange={handleFileChange} multiple/>
+                <input type="file" onChange={handleFileChange} multiple/>
             </label>
             <span style={{fontSize: '12px', color: 'gray', margin: '4px 0 0 0'}}>Upload max 5 photos</span>
             <PhotoList photos={photos} onPhotoDelete={handlePhotoDelete}/>
