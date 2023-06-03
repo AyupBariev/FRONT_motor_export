@@ -72,11 +72,12 @@ const CarouselComponent = ({ carModels }) => {
 
     const arrowContainerStyle = {
         position: 'absolute',
-        top: '50%',
+        top: '45%',
         transform: 'translateY(-50%)',
         display: 'flex',
         justifyContent: 'space-between',
         width: '100%',
+        zIndex: '1'
     };
 
     const arrowStyle = {
