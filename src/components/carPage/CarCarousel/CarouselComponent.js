@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import arrowLeft from '../../../default-images/arrowLeft.png';
 import arrowRight from '../../../default-images/arrowRight.png';
 
@@ -8,45 +8,64 @@ const CarouselComponent = ({ carModels }) => {
     const startXRef = useRef(0);
     const isDraggingRef = useRef(false);
 
+    useEffect(() => {
+        const carousel = carouselRef.current;
+        const handleTransitionEnd = () => {
+            // Сбрасываем флаг перетаскивания после завершения перехода
+            isDraggingRef.current = false;
+            // Удаляем обработчик события, чтобы избежать его вызова для последующих переходов
+            carousel.removeEventListener('transitionend', handleTransitionEnd);
+        };
+        carousel.addEventListener('transitionend', handleTransitionEnd);
+
+        return () => {
+            carousel.removeEventListener('transitionend', handleTransitionEnd);
+        };
+    }, []);
+
     const handleNext = (event) => {
         event.preventDefault();
-        setCurrentSlide((prevSlide) =>
-            prevSlide === carModels.imagePaths.length - 1 ? 0 : prevSlide + 1
-        );
+        if (!isDraggingRef.current) {
+            setCurrentSlide((prevSlide) =>
+                prevSlide === carModels.imagePaths.length - 1 ? 0 : prevSlide + 1
+            );
+        }
     };
 
     const handlePrev = (event) => {
         event.preventDefault();
-        setCurrentSlide((prevSlide) =>
-            prevSlide === 0 ? carModels.imagePaths.length - 1 : prevSlide - 1
-        );
+        if (!isDraggingRef.current) {
+            setCurrentSlide((prevSlide) =>
+                prevSlide === 0 ? carModels.imagePaths.length - 1 : prevSlide - 1
+            );
+        }
     };
 
-    const handleMouseDown = (event) => {
+    const handleTouchStart = (event) => {
         event.preventDefault();
         isDraggingRef.current = true;
-        startXRef.current = event.clientX;
+        startXRef.current = event.touches[0].clientX;
     };
 
-    const handleMouseMove = (event) => {
+    const handleTouchMove = (event) => {
         event.preventDefault();
         if (!isDraggingRef.current) return;
-        const deltaX = event.clientX - startXRef.current;
+        const deltaX = event.touches[0].clientX - startXRef.current;
         const threshold = 50; // Минимальное смещение, чтобы считаться прокруткой
         if (deltaX > threshold) {
             setCurrentSlide((prevSlide) =>
                 prevSlide === 0 ? carModels.imagePaths.length - 1 : prevSlide - 1
             );
-            startXRef.current = event.clientX;
+            startXRef.current = event.touches[0].clientX;
         } else if (deltaX < -threshold) {
             setCurrentSlide((prevSlide) =>
                 prevSlide === carModels.imagePaths.length - 1 ? 0 : prevSlide + 1
             );
-            startXRef.current = event.clientX;
+            startXRef.current = event.touches[0].clientX;
         }
     };
 
-    const handleMouseUp = (event) => {
+    const handleTouchEnd = (event) => {
         event.preventDefault();
         isDraggingRef.current = false;
     };
@@ -79,6 +98,8 @@ const CarouselComponent = ({ carModels }) => {
     const imageStyle = {
         display: 'block',
         maxWidth: '100%',
+        transition: 'transform 0.3s ease',
+        transform: `translateX(-${currentSlide * 100}%)`, // Используйте текущий слайд для определения смещения
     };
 
     const handleMouseEnter = (event) => {
@@ -93,36 +114,41 @@ const CarouselComponent = ({ carModels }) => {
 
     return (
         <div
-            style={{position: 'relative', height: '100%'}}
-            onMouseDown={handleMouseDown}
-            onMouseMove={handleMouseMove}
-            onMouseUp={handleMouseUp}
+            style={{ position: 'relative', height: '100%', overflow: 'hidden' }}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
             ref={carouselRef}
         >
             <div style={arrowContainerStyle}>
-                <button onClick={handlePrev} style={buttonStyle} onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}>
-                    <img
-                        src={arrowLeft}
-                        alt=""
-                        style={{ ...arrowStyle, marginRight: '10px' }}
-                    />
+                <button
+                    onClick={handlePrev}
+                    style={buttonStyle}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                >
+                    <img src={arrowLeft} alt="" style={{ ...arrowStyle, marginRight: '10px' }} />
                 </button>
-                <button onClick={handleNext} style={buttonStyle} onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}>
-                    <img
-                        src={arrowRight}
-                        alt=""
-                        style={{ ...arrowStyle, marginLeft: '4px' }}
-                    />
+                <button
+                    onClick={handleNext}
+                    style={buttonStyle}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                >
+                    <img src={arrowRight} alt="" style={{ ...arrowStyle, marginLeft: '4px' }} />
                 </button>
             </div>
-            <img
-                className="LazyImage__image"
-                src={process.env.REACT_APP_URL + '/' + carModels.imagePaths[currentSlide]}
-                alt={`Image ${currentSlide}`}
-                style={imageStyle}
-            />
+            <div style={{ display: 'flex', transition: 'transform 0.3s ease' }}>
+                {carModels.imagePaths.map((imagePath, index) => (
+                    <img
+                        key={index}
+                        className="LazyImage__image"
+                        src={process.env.REACT_APP_URL + '/' + imagePath}
+                        alt={`Image ${index}`}
+                        style={imageStyle}
+                    />
+                ))}
+            </div>
         </div>
     );
 };
