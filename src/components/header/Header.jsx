@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "./logo.jpg"; // импортируем логотип
+import logo from "../../default-images/logo.jpg"; // импортируем логотип
 import "./Header.css"; // импортируем файл стилей
 import SearchBar from "../search/SearchBar";
 

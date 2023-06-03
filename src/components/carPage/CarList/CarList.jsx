@@ -9,7 +9,7 @@ import {engineGroupOptions} from "../../../data/engineGroupOptions";
 import {gearTypeOptions} from "../../../data/gearTypeOptions";
 import {transmissionOptions} from "../../../data/transmissionOptions";
 import SpaceDigitComponent from "../../common/SpaceDigitComponent";
-
+import whatsApp from '../../../default-images/whatsApp.png';
 const CarList = ({filter}) => {
     const [cars, setCars] = useState([]);
     const [page, setPage] = useState(0);
@@ -121,7 +121,7 @@ const CarList = ({filter}) => {
                                     <a className="linkMessage"
                                        href={"https://api.whatsapp.com/send/?phone=971559299569&text=" + encodeURIComponent('Hello! I want to buy the car ' + process.env.REACT_APP_BACKEND_MOTOR_EXPORT + '/api/v1/car/' + car.id) + "&type=phone_number&app_absent=0"}><img
                                         className="w30percent"
-                                        src={process.env.REACT_APP_APP_URL + "/images/whatsApp.png"}
+                                        src={whatsApp}
                                         alt="Write the message"/></a>
                                 </div>
                             </div>

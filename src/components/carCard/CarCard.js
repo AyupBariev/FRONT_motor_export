@@ -11,6 +11,7 @@ import {countriesByIsoCode} from "../../data/countriesByIsoCode";
 import {bodyTypeGroupOptions} from "../../data/bodyTypeGroupOptions";
 import SpaceDigitComponent from "../common/SpaceDigitComponent";
 import {engineGroupOptions} from "../../data/engineGroupOptions";
+import whatsApp from '../../default-images/whatsApp.png';
 
 const CarCard = () => {
     const {guid} = useParams();
@@ -62,7 +63,7 @@ const CarCard = () => {
                     >
                         <img
                             className="w20percent"
-                            src={process.env.REACT_APP_APP_URL + "/images/whatsApp.png"}
+                            src={whatsApp}
                             alt="Write the message"
                         />
                     </a>

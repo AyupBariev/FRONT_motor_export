@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import arrowLeft from '../../../default-images/arrowLeft.png';
+import arrowRight from '../../../default-images/arrowRight.png';
 
 const CarouselComponent = ({ carModels }) => {
     const [currentSlide, setCurrentSlide] = useState(0);
+    const carouselRef = useRef(null);
+    const startXRef = useRef(0);
+    const isDraggingRef = useRef(false);
 
     const handleNext = (event) => {
         event.preventDefault();
@@ -15,6 +20,35 @@ const CarouselComponent = ({ carModels }) => {
         setCurrentSlide((prevSlide) =>
             prevSlide === 0 ? carModels[0].imagePaths.length - 1 : prevSlide - 1
         );
+    };
+
+    const handleMouseDown = (event) => {
+        event.preventDefault();
+        isDraggingRef.current = true;
+        startXRef.current = event.clientX;
+    };
+
+    const handleMouseMove = (event) => {
+        event.preventDefault();
+        if (!isDraggingRef.current) return;
+        const deltaX = event.clientX - startXRef.current;
+        const threshold = 50; // Минимальное смещение, чтобы считаться прокруткой
+        if (deltaX > threshold) {
+            setCurrentSlide((prevSlide) =>
+                prevSlide === 0 ? carModels[0].imagePaths.length - 1 : prevSlide - 1
+            );
+            startXRef.current = event.clientX;
+        } else if (deltaX < -threshold) {
+            setCurrentSlide((prevSlide) =>
+                prevSlide === carModels[0].imagePaths.length - 1 ? 0 : prevSlide + 1
+            );
+            startXRef.current = event.clientX;
+        }
+    };
+
+    const handleMouseUp = (event) => {
+        event.preventDefault();
+        isDraggingRef.current = false;
     };
 
     const arrowContainerStyle = {
@@ -45,7 +79,7 @@ const CarouselComponent = ({ carModels }) => {
     const imageStyle = {
         display: 'block',
         maxWidth: '100%',
-        height: 'auto',
+        height: '500px',
     };
 
     const handleMouseEnter = (event) => {
@@ -59,20 +93,34 @@ const CarouselComponent = ({ carModels }) => {
     };
 
     return (
-        <div style={{ position: 'relative' }}>
+        <div
+            style={{ position: 'relative' }}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            ref={carouselRef}
+        >
             <div style={arrowContainerStyle}>
-                <button onClick={handlePrev} style={buttonStyle} onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}>
+                <button
+                    onClick={handlePrev}
+                    style={buttonStyle}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                >
                     <img
-                        src={process.env.REACT_APP_APP_URL + '/images/arrowLeft.png'}
+                        src={arrowLeft}
                         alt=""
                         style={{ ...arrowStyle, marginRight: '10px' }}
                     />
                 </button>
-                <button onClick={handleNext} style={buttonStyle} onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}>
+                <button
+                    onClick={handleNext}
+                    style={buttonStyle}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                >
                     <img
-                        src={process.env.REACT_APP_APP_URL + '/images/arrowRight.png'}
+                        src={arrowRight}
                         alt=""
                         style={{ ...arrowStyle, marginLeft: '4px' }}
                     />
