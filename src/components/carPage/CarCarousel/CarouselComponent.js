@@ -11,14 +11,14 @@ const CarouselComponent = ({ carModels }) => {
     const handleNext = (event) => {
         event.preventDefault();
         setCurrentSlide((prevSlide) =>
-            prevSlide === carModels[0].imagePaths.length - 1 ? 0 : prevSlide + 1
+            prevSlide === carModels.imagePaths.length - 1 ? 0 : prevSlide + 1
         );
     };
 
     const handlePrev = (event) => {
         event.preventDefault();
         setCurrentSlide((prevSlide) =>
-            prevSlide === 0 ? carModels[0].imagePaths.length - 1 : prevSlide - 1
+            prevSlide === 0 ? carModels.imagePaths.length - 1 : prevSlide - 1
         );
     };
 
@@ -35,12 +35,12 @@ const CarouselComponent = ({ carModels }) => {
         const threshold = 50; // Минимальное смещение, чтобы считаться прокруткой
         if (deltaX > threshold) {
             setCurrentSlide((prevSlide) =>
-                prevSlide === 0 ? carModels[0].imagePaths.length - 1 : prevSlide - 1
+                prevSlide === 0 ? carModels.imagePaths.length - 1 : prevSlide - 1
             );
             startXRef.current = event.clientX;
         } else if (deltaX < -threshold) {
             setCurrentSlide((prevSlide) =>
-                prevSlide === carModels[0].imagePaths.length - 1 ? 0 : prevSlide + 1
+                prevSlide === carModels.imagePaths.length - 1 ? 0 : prevSlide + 1
             );
             startXRef.current = event.clientX;
         }
@@ -93,31 +93,23 @@ const CarouselComponent = ({ carModels }) => {
 
     return (
         <div
-            style={{ position: 'relative' }}
+            style={{position: 'relative'}}
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
             ref={carouselRef}
         >
             <div style={arrowContainerStyle}>
-                <button
-                    onClick={handlePrev}
-                    style={buttonStyle}
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                >
+                <button onClick={handlePrev} style={buttonStyle} onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}>
                     <img
                         src={arrowLeft}
                         alt=""
                         style={{ ...arrowStyle, marginRight: '10px' }}
                     />
                 </button>
-                <button
-                    onClick={handleNext}
-                    style={buttonStyle}
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                >
+                <button onClick={handleNext} style={buttonStyle} onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}>
                     <img
                         src={arrowRight}
                         alt=""
@@ -127,7 +119,7 @@ const CarouselComponent = ({ carModels }) => {
             </div>
             <img
                 className="LazyImage__image"
-                src={carModels[0].imagePaths[currentSlide]}
+                src={process.env.REACT_APP_APP_URL + '/' + carModels.imagePaths[currentSlide]}
                 alt={`Image ${currentSlide}`}
                 style={imageStyle}
             />

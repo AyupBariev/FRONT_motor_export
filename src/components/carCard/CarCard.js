@@ -18,12 +18,6 @@ const CarCard = () => {
     const navigate = useNavigate();
     const [carData, setCarData] = useState(null);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-    const carModels = [{
-        "imagePaths": [
-            "/images/1.webp",
-            "/images/2.webp"
-        ]
-    }];
     const countryOptions = countriesByIsoCode.map((country) => {
         const isoCode = Object.keys(country)[0];
         const countryName = Object.values(country)[0];
@@ -127,7 +121,7 @@ const CarCard = () => {
                         alt="Write the message"/></a> : ''}
                 </div>
                 <div className="CardOfferBody__rightColumn">
-                    <CarouselComponent carModels={carModels}/>
+                    <CarouselComponent carModels={carData}/>
                 </div>
             </div>
 
