@@ -117,7 +117,17 @@ const CarouselComponent = ({carModels}) => {
         height: '100%',
         width: '100%'
     };
+    const listContainerStyle = {
+        display: '-webkit-inline-box',
+        transition: 'transform 0.3s ease',
+        height: '100%',
+    };
 
+    const cardContainerStyle = {
+        display: 'flex',
+        transition: 'transform 0.3s ease',
+        height: '100%',
+    };
     return (
         <div
             style={{position: 'relative', height: '100%', overflow: 'hidden'}}
@@ -145,15 +155,17 @@ const CarouselComponent = ({carModels}) => {
                 </button>
             </div>
             <div style={carouselContainerStyle}>
-                <div style={{display: '-webkit-box', transition: 'transform 0.3s ease', height: '100%'}}>
+                <div style={listContainerStyle}>
                     {carModels.imagePaths.map((imagePath, index) => (
-                        <img
-                            key={index}
-                            className="LazyImage__image"
-                            src={process.env.REACT_APP_URL + '/' + imagePath}
-                            alt={`Image ${index}`}
-                            style={imageStyle}
-                        />
+                        <div key={index} className="car-image-container" style={cardContainerStyle}>
+                            <img
+                                key={index}
+                                className="LazyImage__image"
+                                src={process.env.REACT_APP_URL + '/' + imagePath}
+                                alt={`Image ${index}`}
+                                style={imageStyle}
+                            />
+                        </div>
                     ))}
                 </div>
             </div>
