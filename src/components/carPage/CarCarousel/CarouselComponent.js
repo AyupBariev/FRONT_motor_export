@@ -145,7 +145,7 @@ const CarouselComponent = ({carModels}) => {
                 </button>
             </div>
             <div style={carouselContainerStyle}>
-                <div style={{display: 'flex', transition: 'transform 0.3s ease', height: '100%'}}>
+                <div style={{display: '-webkit-box', transition: 'transform 0.3s ease', height: '100%'}}>
                     {carModels.imagePaths.map((imagePath, index) => (
                         <img
                             key={index}
