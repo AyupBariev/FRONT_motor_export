@@ -28,8 +28,8 @@
 .car-image-container {
     flex-shrink: 0;
     position: relative;
-    width: 205px;
-    height: 250px;
+    width: 250px;
+    height: 175px;
 }
 .LazyImage__image {
     display: block;
@@ -72,6 +72,9 @@
     margin: 10px 0;
 }
 @media (max-width: 1000px) {
+    .car-image-container {
+        height: 250px;
+    }
     .car-details {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto;
@@ -101,5 +104,13 @@
 
     .ListingItemTechSummaryDesktop__column {
         width: 100%;
+    }
+}
+@media (max-width: 568px) {
+    .titleDetails {
+        font-size: 0.9em;
+    }
+    .ListingItemTechSummaryDesktop__cell{
+        font-size: 14px;
     }
 }

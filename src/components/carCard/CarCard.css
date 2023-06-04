@@ -4,6 +4,8 @@
 }
 .CardHead__topRow,.CardOfferBody__columnsWrapper, .CardInfoRow, .CardHead__topRowLeftColumn {
     display: flex;
+}
+.CardHead__topRowLeftColumn {
     justify-content: space-between;
     width: 100%;
 }
