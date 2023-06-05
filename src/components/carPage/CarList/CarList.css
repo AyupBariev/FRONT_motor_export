@@ -35,8 +35,8 @@
     display: block;
     object-fit: cover;
     transition: opacity .15s;
-    width: 100%;
-    border-radius: 8px;
+    /*width: 100%;*/
+    border-radis: 8px;
 }
 .car-details{
     display: grid;
