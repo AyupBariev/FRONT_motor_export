@@ -35,7 +35,7 @@
     display: block;
     object-fit: cover;
     transition: opacity .15s;
-    width: 250px;
+    width: 100%;
     border-radius: 8px;
 }
 .car-details{
@@ -73,7 +73,7 @@
 }
 @media (max-width: 1000px) {
     .car-image-container {
-        height: 256px;
+        height: 250px;
     }
     .car-details {
         grid-template-columns: 1fr 1fr;
