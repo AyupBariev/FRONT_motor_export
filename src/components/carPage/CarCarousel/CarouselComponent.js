@@ -98,7 +98,6 @@ const CarouselComponent = ({carModels}) => {
 
     const imageStyle = {
         display: 'block',
-        maxWidth: '100%',
         transition: 'transform 0.3s ease',
         transform: `translateX(-${currentSlide * 100}%)`,
     };
