@@ -80,6 +80,12 @@ const CarouselComponent = ({carModels}) => {
         zIndex: '1'
     };
 
+    const screenWidth = window.innerWidth;
+
+    if (screenWidth < 1000) {
+        arrowContainerStyle.display = 'none';
+    }
+
     const arrowStyle = {
         width: '30px',
         height: '30px',
