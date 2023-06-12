@@ -65,10 +65,10 @@ const CarouselComponent = ({carModels}) => {
         }
     };
 
-    const handleTouchEnd = (event) => {
-        event.preventDefault();
-        isDraggingRef.current = false;
-    };
+    // const handleTouchEnd = (event) => {
+    //     event.preventDefault();
+    //     isDraggingRef.current = false;
+    // };
 
     const arrowContainerStyle = {
         position: 'absolute',
@@ -128,7 +128,7 @@ const CarouselComponent = ({carModels}) => {
             style={{position: 'relative', height: '100%', overflow: 'hidden'}}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
+            // onTouchEnd={handleTouchEnd}
             ref={carouselRef}
         >
             <div style={arrowContainerStyle}>
